@@ -20,7 +20,7 @@ const processJsHandler = async (nextPage, customHandler) => {
   await renameAsync(nextPage.pagePath, nextPage.pageOriginalPath);
 
   // sls-next-build/page.compat.js -> sls-next-build/page.js
-  await renameAsync(nextPage.pageCompatPath, nextPage.pagePath);
+  await renameAsync(nextPage.pageCompatPath, nextPage.pagePath.replace('\.\.\.', 'dotdotdot'));
 };
 
 module.exports = (nextPages, customHandler) => {

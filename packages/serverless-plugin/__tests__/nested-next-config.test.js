@@ -58,6 +58,25 @@ describe("nested next config", () => {
         );
       });
     });
+
+    describe("catch-all page", () => {
+      let postSlugsPageLambda;
+
+      beforeAll(() => {
+        postSlugsPageLambda =
+          cloudFormationUpdateResources.BlogDashpostsDashUnderscoreUnderscoreUnderscoreUnderscoreslugsUnderscoreLambdaFunction;
+      });
+
+      it("creates lambda resource", () => {
+        expect(postSlugsPageLambda).toBeDefined();
+      });
+
+      it("has correct handler", () => {
+        expect(postSlugsPageLambda.Properties.Handler).toEqual(
+          "app/sls-next-build/blog/posts/[dotdotdotslugs].render"
+        );
+      });
+    });
   });
 
   describe("Api Gateway", () => {
@@ -88,10 +107,14 @@ describe("nested next config", () => {
           const blogPostResource =
             cloudFormationUpdateResources.ApiGatewayResourceBlogPost;
 
+          const blogPostsSlugResource =
+            cloudFormationUpdateResources.ApiGatewayResourceBlogPostsSlugsVar;
+
           expect(blogResource).toBeDefined();
           expect(blogPostResource).toBeDefined();
           expect(blogResource.Properties.PathPart).toEqual("blog");
           expect(blogPostResource.Properties.PathPart).toEqual("post");
+          expect(blogPostsSlugResource.Properties.PathPart).toEqual("{slugs+}")
         });
       });
     });

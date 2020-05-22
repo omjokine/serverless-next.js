@@ -85,6 +85,7 @@ class NextPage {
 
         const originalPath = routeSegments.join("/");
         const pathWithReplacedBrackets = originalPath
+          .replace(/\[\.\.\.(.*)]$/, "{$1\+}")
           .replace(/\[/g, "{")
           .replace(/\]/g, "}");
 
