@@ -75,6 +75,7 @@ describe("ServerlessNextJsPlugin", () => {
         .build();
 
       expect(plugin.getPluginConfigValue("routes")).toEqual([]);
+      expect(plugin.getPluginConfigValue("excludeSourcemaps")).toEqual(false);
       expect(plugin.getPluginConfigValue("uploadBuildAssets")).toEqual(true);
     });
   });

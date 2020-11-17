@@ -363,6 +363,7 @@ module.exports = (page) => {
 | customHandler     | `string`           | \<empty\>     | Path to your own lambda handler.                                                                                                                                                                                              |
 | uploadBuildAssets | `bool`             | true          | In the unlikely event that you only want to upload `static` or `public` dirs, set this to `false`.                                                                                                                            |
 | createAssetBucket | `bool`             | true          | Set to false if you want to manage next assets yourself.                                                                                                                                                                      |
+| excludeSourcemaps | `bool`             | false         | Set to true if you want to exclude \*.js.map files from the serverless package yourself.                                                                                                                                      |
 
 ## Caveats
 

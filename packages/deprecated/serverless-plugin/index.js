@@ -74,7 +74,8 @@ class ServerlessNextJsPlugin {
       nextConfigDir: "./",
       uploadBuildAssets: true,
       cloudFront: false,
-      createAssetBucket: true
+      createAssetBucket: true,
+      excludeSourcemaps: false
     };
 
     const userConfig =

@@ -19,10 +19,16 @@ module.exports = async function () {
   const pluginBuildDir = this.pluginBuildDir;
   const nextConfigDir = pluginBuildDir.nextConfigDir;
 
-  const [pageConfig, customHandler, routes] = this.getPluginConfigValues(
+  const [
+    pageConfig,
+    customHandler,
+    routes,
+    excludeSourcemaps
+  ] = this.getPluginConfigValues(
     "pageConfig",
     "customHandler",
-    "routes"
+    "routes",
+    "excludeSourcemaps"
   );
 
   logger.log("Started building next app ...");
@@ -38,6 +44,12 @@ module.exports = async function () {
     path.posix.join(nextAwsLambdaPath, "**", "*.js"),
     `!${path.posix.join(nextAwsLambdaPath, "**", "*.test.js")}`
   );
+
+  if (excludeSourcemaps) {
+    servicePackage.include.push(
+      `!${path.posix.join(pluginBuildDir.posixBuildDir, "**", "*.js.map")}`
+    );
+  }
 
   const { nextConfiguration } = await parseNextConfiguration(nextConfigDir);
 
