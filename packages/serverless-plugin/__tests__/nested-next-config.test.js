@@ -114,7 +114,7 @@ describe("nested next config", () => {
           expect(blogPostResource).toBeDefined();
           expect(blogResource.Properties.PathPart).toEqual("blog");
           expect(blogPostResource.Properties.PathPart).toEqual("post");
-          expect(blogPostsSlugResource.Properties.PathPart).toEqual("{slugs+}")
+          expect(blogPostsSlugResource.Properties.PathPart).toEqual("blog/posts/{slugs+}")
         });
       });
     });
